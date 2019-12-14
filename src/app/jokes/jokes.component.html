@@ -1,1 +1,9 @@
-<p>jokes works!</p>
+<span>Max jokes</span>
+<select [(ngModel)] = "maxJokes"> <!-- (ngModelChange)="onChange()" -->
+  <option *ngFor="let i of [1,2,3,4,5,6,7,8,9,10]" [ngValue]=i>{{i}}</option>
+</select>  
+<ul class="jokes">
+  <li *ngFor="let joke of jokes | slice:0:maxJokes " >
+      <span class="number">{{joke.id}}</span> {{joke.joke}}
+  </li>
+</ul>

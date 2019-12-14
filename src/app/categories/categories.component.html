@@ -1,1 +1,5 @@
-<p>categories works!</p>
+<span *ngFor="let category of categories"> <!-- | async -->
+    <a [routerLink]="['/category', category]">
+      {{ category }}
+    </a>
+  </span>
