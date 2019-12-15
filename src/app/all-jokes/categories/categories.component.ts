@@ -1,13 +1,12 @@
 
 import { Component, OnInit } from '@angular/core';
-
 import { CategoriesService } from '../categories.service';
-
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
+
 @Component({
   selector: 'categories-list',
   templateUrl: './categories.component.html',
@@ -16,10 +15,8 @@ import { Injectable } from '@angular/core';
 export class CategoriesComponent implements OnInit {
   categories: string[];
   
-  
-
   constructor(
-    private service: CategoriesService
+    private service: CategoriesService,
   ) {}
 
   ngOnInit() {

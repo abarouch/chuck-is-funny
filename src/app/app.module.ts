@@ -1,38 +1,18 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule }    from '@angular/forms';
-import { HttpClientModule }    from '@angular/common/http';
-
-import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
-
-
-import { AppRoutingModule } from './app-routing.module';
-import { RouterModule, }     from '@angular/router';
 
 import { AppComponent } from './app.component';
-
-import { MessageComponent } from './message/message.component';
-import { CategoriesComponent } from './categories/categories.component';
-import { AbJokesComponent } from './jokes/jokes.component';
-import { AbPageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AllJokesModule } from './all-jokes/all-jokes.module';
+import { MessageModule } from './message/message.module';
 
 @NgModule({
   declarations: [
     AppComponent,
-
-    MessageComponent,
-    CategoriesComponent,
-    AbJokesComponent,
-    AbPageNotFoundComponent
-
-
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    HttpClientModule,
-    AppRoutingModule,
-    RouterModule.forRoot([]),
+    MessageModule,
+    AllJokesModule,
     
     // The HttpClientInMemoryWebApiModule module intercepts HTTP requests
     // and returns simulated server responses.
@@ -42,6 +22,8 @@ import { AbPageNotFoundComponent } from './page-not-found/page-not-found.compone
     // )
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  exports: []
+
 })
 export class AppModule { }

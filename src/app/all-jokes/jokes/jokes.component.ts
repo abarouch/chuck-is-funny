@@ -6,12 +6,6 @@ import { AbJokesService } from '../jokes.service';
 
 import { Injectable } from '@angular/core';
 
-
-
-
-
-
-
 @Injectable({
   providedIn: 'root',
 })

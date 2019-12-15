@@ -6,7 +6,7 @@ import { Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { JokesApi, JokeRec } from './joke';
-import { MessageService } from './message.service';
+import { MessageService } from '../message.service';
 import { Router } from '@angular/router';
 
 
