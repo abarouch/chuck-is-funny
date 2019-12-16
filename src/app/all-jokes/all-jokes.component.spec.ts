@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { AllJokesComponent } from './all-jokes.component';
+import { Component, NO_ERRORS_SCHEMA } from '@angular/core';
+
+@Component({selector: 'categories-list', template: ''})
+class CategoriesStubComponent {}
 
 describe('AllJokesComponent', () => {
   let component: AllJokesComponent;
@@ -8,7 +11,11 @@ describe('AllJokesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AllJokesComponent ]
+      declarations: [ 
+        AllJokesComponent,
+        CategoriesStubComponent,
+      ],
+    schemas: [ NO_ERRORS_SCHEMA ]
     })
     .compileComponents();
   }));

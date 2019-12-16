@@ -1,6 +1,13 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { Component } from '@angular/core';
+
+@Component({selector: 'app-all-jokes', template: ''})
+class AllJokesStubComponent {}
+@Component({selector: 'app-messages', template: ''})
+class MessageStubComponent {}
+
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -9,7 +16,9 @@ describe('AppComponent', () => {
         RouterTestingModule
       ],
       declarations: [
-        AppComponent
+        AppComponent,
+        AllJokesStubComponent,
+        MessageStubComponent
       ],
     }).compileComponents();
   }));

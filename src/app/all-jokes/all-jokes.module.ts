@@ -9,6 +9,8 @@ import { AllJokesComponent } from './all-jokes.component';
 import { AllJokesRoutingModule } from './all-jokes-routing.module';
 import { RouterModule } from '@angular/router';
 import { AbPageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { AbJokesService } from './jokes.service';
+import { CategoriesService } from './categories.service';
 
 
 @NgModule({
@@ -30,5 +32,10 @@ import { AbPageNotFoundComponent } from './page-not-found/page-not-found.compone
     CategoriesComponent,
     AllJokesComponent,
   ],
+  providers: [
+    AbJokesService,
+    CategoriesService,
+    HttpClientModule,
+  ]
 })
 export class AllJokesModule { }
