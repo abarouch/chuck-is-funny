@@ -8,34 +8,36 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { JokesApi, JokeRec } from './joke';
 import { MessageService } from '../message.service';
 import { Router } from '@angular/router';
+import { MaxJokesService } from './max-jokes.service';
 
 
 @Injectable({ providedIn: 'root' })
 export class AbJokesService {
 
-  private jokesUrl = 'https://api.icndb.com/jokes/random/10';  // URL to real web api
+  private jokesUrl = 'https://api.icndb.com/jokes/random/';  // URL to real web api
+  private maxJokes = this.maxJokesService.maxJokes;
   //private jokesUrl = 'api/jokes';  // URL to web api
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
-  constructor(
+    constructor(
     private http: HttpClient,
     private messageService: MessageService,
-    private router: Router) {} 
+    private router: Router,
+    private maxJokesService: MaxJokesService) {} 
+  
+    
   
     private findApiUrl (){
     var category = this.router.url.replace('/jokes','').replace('/category/','');
     category = ('?limitTo=[category]').replace('category',category);
-    this.jokesUrl = 'https://api.icndb.com/jokes/random/10';
+    this.jokesUrl = 'https://api.icndb.com/jokes/random/';
     this.jokesUrl = this.router.url.search('/jokes') >= 0? 
       this.jokesUrl : this.jokesUrl + category;
   }
 
-  /** GET random, up to "amount" varable of jokes from the server */
-  getJokes (maxJokes?: number): Observable<JokesApi> {
-    this.findApiUrl ();
-    console.log(this.jokesUrl+"/"+ maxJokes)
+  /** GET random, up to "maxJokes" number of jokes from the server */
+  getJokes (category: string): Observable<JokesApi> {
+    if (category !== 'all')  this.findApiUrl ();
+    console.log(this.jokesUrl + this.maxJokes)
     return this.http.get<JokesApi>(this.jokesUrl)
        .pipe(
        tap(_ => console.log('fetched jokes')),

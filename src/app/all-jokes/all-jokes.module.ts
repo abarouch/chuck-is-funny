@@ -11,6 +11,7 @@ import { RouterModule } from '@angular/router';
 import { AbPageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AbJokesService } from './jokes.service';
 import { CategoriesService } from './categories.service';
+import { MaxJokesService } from './max-jokes.service';
 
 
 @NgModule({
@@ -25,17 +26,18 @@ import { CategoriesService } from './categories.service';
     RouterModule.forRoot([]),
     FormsModule,
     HttpClientModule,
-    AllJokesRoutingModule,
+    AllJokesRoutingModule
   ],
   exports: [
     AbJokesComponent,
     CategoriesComponent,
-    AllJokesComponent,
+    AllJokesComponent
   ],
   providers: [
     AbJokesService,
     CategoriesService,
     HttpClientModule,
+    MaxJokesService
   ]
 })
 export class AllJokesModule { }
