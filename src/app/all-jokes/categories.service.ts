@@ -6,6 +6,8 @@ import { catchError, map, tap } from 'rxjs/operators';
 
 import { CategoriesOnJsonFile } from './categories-on-json-file';
 import { MessageService } from '../message.service';
+import { CategoriesApi} from './categories/categories.component';
+
 
 
 @Injectable({ providedIn: 'root' })
@@ -22,12 +24,12 @@ export class CategoriesService {
     private http: HttpClient,
     private messageService: MessageService) { }
 
-   /** GET categories from the server */
-  getCategories (): Observable<CategoriesOnJsonFile> {
-    return this.http.get<CategoriesOnJsonFile>(this.categoriesUrl)
+   /** GET observable of categories from the server */
+  getCategories () {
+    return this.http.get<CategoriesApi>(this.categoriesUrl)
       .pipe(
-        tap(_ => this.log('fetched category')),
-        catchError(this.handleError<CategoriesOnJsonFile>('getCategoies'))
+        tap(_ => this.log('fetched categories')),
+        catchError(this.handleError<CategoriesApi>('getCategoies')),
       );
   }
 
