@@ -38,7 +38,7 @@ export class AbJokesService {
     console.log(this.jokesUrl+"/"+ maxJokes)
     return this.http.get<JokesApi>(this.jokesUrl)
        .pipe(
-       tap(_ => console.log('fetched jokes')),
+       tap(_ => this.log('fetched jokes')),
        catchError(this.handleError<JokesApi>('getJokes',))
     ); 
   }
@@ -55,5 +55,8 @@ export class AbJokesService {
       return of(result as T);
     };
   }
- 
+  /** Log a AbJokesService message with the MessageService */
+  private log(message: string) {
+    this.messageService.add(`AbJokesService: ${message}`);
+  }
 }

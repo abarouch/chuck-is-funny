@@ -26,7 +26,7 @@ export class CategoriesService {
   getCategories (): Observable<CategoriesOnJsonFile> {
     return this.http.get<CategoriesOnJsonFile>(this.categoriesUrl)
       .pipe(
-        tap(_ => this.log('fetched jokes from the category')),
+        tap(_ => this.log('fetched category')),
         catchError(this.handleError<CategoriesOnJsonFile>('getCategoies'))
       );
   }

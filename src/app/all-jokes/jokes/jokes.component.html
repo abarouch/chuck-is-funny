@@ -4,6 +4,6 @@
 </select>  
 <ul class="jokes">
   <li *ngFor="let joke of jokes | slice:0:maxJokes " >
-      <span class="number">{{joke.id}}</span> {{joke.joke}}
+  <span class="number">{{joke.id}}</span> {{joke.joke}}*{{joke.categories[0]}}*
   </li>
 </ul>
