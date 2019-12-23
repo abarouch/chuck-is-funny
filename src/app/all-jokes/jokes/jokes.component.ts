@@ -5,6 +5,8 @@ import { JokeRec, JokesApi } from '../joke';
 import { AbJokesService } from '../jokes.service';
 
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root',
@@ -22,6 +24,7 @@ export class AbJokesComponent implements OnInit {
   jokes: JokeRec[];  
   maxJokes: number = 1;
   url: string;
+  jokes$: Observable <JokeRec[]>;
 
   constructor(private jokeService: AbJokesService) { };
   
@@ -32,18 +35,12 @@ export class AbJokesComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.getJokes();
+    this.jokes$ = this.getJokes();
   }
-  getJokes(): void {
-    //console.log (this.maxJokes);
-    this.jokeService.getJokes()
-    .subscribe(
-      jokesApi => {
-        this.jokes = jokesApi.value;
-        console.log (this.jokes); //for debug    
-      }
-    );
-  }
-  
+  getJokes(): Observable <JokeRec[]>   {
+    return this.jokeService.getJokes().pipe(
+      map( response => response.value)
+    )
+  }  
 
 }
