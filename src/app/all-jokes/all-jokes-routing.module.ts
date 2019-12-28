@@ -8,8 +8,7 @@ import { AbPageNotFoundComponent } from './page-not-found/page-not-found.compone
 const routes: Routes = [
   { path: '', redirectTo: 'jokes', pathMatch: 'full' },
   { path: 'jokes', component: AbJokesComponent },
-  { path: 'category/nerdy', component: AbJokesComponent },
-  { path: 'category/explicit', component: AbJokesComponent },
+  { path: 'jokes/:category', component: AbJokesComponent },
   { path: '**', component: AbPageNotFoundComponent, pathMatch: 'full'}
 ];
 

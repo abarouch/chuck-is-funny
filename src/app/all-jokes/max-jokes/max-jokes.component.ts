@@ -12,20 +12,15 @@ export class MaxJokesComponent implements OnInit {
    
   constructor(
     private globals: Globals,
-    private jokesComponent: AbJokesComponent
   ) { }
 
   maxJokes = this.globals.maxJokes;
 
   onChange(){
     this.globals.maxJokes = this.maxJokes;
-    this.jokesComponent.jokes$ = this.jokesComponent.getJokes(this.maxJokes)
   }
 
   ngOnInit() { // with select Jokes maximum number
-    //this.maxJokes = +this.maxJokes;
-    console.log (this.maxJokes);
-    //this.jokesComponent.getJokes(this.maxJokes);
   }
 
 }

@@ -6,8 +6,9 @@ import { AbJokesService } from '../jokes.service';
 
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, switchMap } from 'rxjs/operators';
 import { Globals } from '../globals'
+import { ActivatedRoute, ParamMap } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
@@ -25,16 +26,21 @@ export class AbJokesComponent implements OnInit {
 
   constructor(
     private jokeService: AbJokesService,
-    private globals:Globals
+    private globals:Globals,
+    private route: ActivatedRoute
   ) { };
   
   ngOnInit() {
-    this.jokes$ = this.getJokes(this.globals.maxJokes);
-  }
-
-  getJokes(maxJokes: number): Observable <JokeRec[]>   {
-    return this.jokeService.getJokes(maxJokes).pipe(
+    this.jokes$ = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => 
+        this.jokeService
+          .getJokes(this.globals.maxJokes,params.get('category'))
+      ),
       map( response => response.value)
     )
-  }  
+  }
+
+  ngOnDestroy(){
+
+  }
 }

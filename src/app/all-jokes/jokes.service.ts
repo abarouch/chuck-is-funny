@@ -24,17 +24,17 @@ export class AbJokesService {
     private messageService: MessageService,
     private router: Router) {} 
   
-    private findApiUrl (maxJokes: number){
-    var category = this.router.url.replace('/jokes','').replace('/category/','');
-    category = ('?limitTo=[category]').replace('category',category);
-    this.jokesUrl = 'https://api.icndb.com/jokes/random/'+ maxJokes;
-    this.jokesUrl = this.router.url.search('/jokes') >= 0? 
-      this.jokesUrl : this.jokesUrl + category;
+    private findApiUrl (maxJokes: number, category: string){
+      this.jokesUrl = 'https://api.icndb.com/jokes/random/'+ maxJokes;
+      if (category) {
+        category = ('?limitTo=[category]').replace('category',category);
+        this.jokesUrl += category
+      }
   }
 
   /** GET random, up to "amount" varable of jokes from the server */
-  getJokes (maxJokes: number): Observable<JokesApi> {
-    this.findApiUrl (maxJokes);
+  getJokes (maxJokes: number, category: string): Observable<JokesApi> {
+    this.findApiUrl (maxJokes, category);
     console.log("jokeurl="+this.jokesUrl)
     return this.http.get<JokesApi>(this.jokesUrl)
     .pipe(
