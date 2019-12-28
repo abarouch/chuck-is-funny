@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
 @Injectable({ providedIn: 'root' })
 export class AbJokesService {
 
-  private jokesUrl = 'https://api.icndb.com/jokes/random/10';  // URL to real web api
+  private jokesUrl = 'https://api.icndb.com/jokes/random/';  // URL to real web api
   //private jokesUrl = 'api/jokes';  // URL to web api
 
   httpOptions = {
@@ -24,22 +24,22 @@ export class AbJokesService {
     private messageService: MessageService,
     private router: Router) {} 
   
-    private findApiUrl (){
+    private findApiUrl (maxJokes: number){
     var category = this.router.url.replace('/jokes','').replace('/category/','');
     category = ('?limitTo=[category]').replace('category',category);
-    this.jokesUrl = 'https://api.icndb.com/jokes/random/10';
+    this.jokesUrl = 'https://api.icndb.com/jokes/random/'+ maxJokes;
     this.jokesUrl = this.router.url.search('/jokes') >= 0? 
       this.jokesUrl : this.jokesUrl + category;
   }
 
   /** GET random, up to "amount" varable of jokes from the server */
-  getJokes (maxJokes?: number): Observable<JokesApi> {
-    this.findApiUrl ();
-    console.log(this.jokesUrl+"/"+ maxJokes)
+  getJokes (maxJokes: number): Observable<JokesApi> {
+    this.findApiUrl (maxJokes);
+    console.log("jokeurl="+this.jokesUrl)
     return this.http.get<JokesApi>(this.jokesUrl)
-       .pipe(
-       tap(_ => this.log('fetched jokes')),
-       catchError(this.handleError<JokesApi>('getJokes',))
+    .pipe(
+      tap(_ => this.log('fetched jokes')),
+      catchError(this.handleError<JokesApi>('getJokes',))
     ); 
   }
   private handleError<T> (operation = 'operation', result?: T) {

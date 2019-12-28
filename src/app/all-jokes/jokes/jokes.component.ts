@@ -7,13 +7,11 @@ import { AbJokesService } from '../jokes.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { Globals } from '../globals'
 
 @Injectable({
   providedIn: 'root',
 })
-
-
-
 @Component({
   selector: 'app-jokes',
   templateUrl: './jokes.component.html',
@@ -22,25 +20,21 @@ import { map } from 'rxjs/operators';
 export class AbJokesComponent implements OnInit {
   jokesApi: JokesApi;
   jokes: JokeRec[];  
-  maxJokes: number = 1;
   url: string;
   jokes$: Observable <JokeRec[]>;
 
-  constructor(private jokeService: AbJokesService) { };
+  constructor(
+    private jokeService: AbJokesService,
+    private globals:Globals
+  ) { };
   
-  onChange() { // with select Jokes maximum number
-    //this.maxJokes = +this.maxJokes;
-    console.log (this.maxJokes);
-    this.getJokes();
+  ngOnInit() {
+    this.jokes$ = this.getJokes(this.globals.maxJokes);
   }
 
-  ngOnInit() {
-    this.jokes$ = this.getJokes();
-  }
-  getJokes(): Observable <JokeRec[]>   {
-    return this.jokeService.getJokes().pipe(
+  getJokes(maxJokes: number): Observable <JokeRec[]>   {
+    return this.jokeService.getJokes(maxJokes).pipe(
       map( response => response.value)
     )
   }  
-
 }

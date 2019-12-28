@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { AllJokesModule } from './all-jokes/all-jokes.module';
 import { MessageModule } from './message/message.module';
+import { Router } from '@angular/router';
+
 
 @NgModule({
   declarations: [
@@ -26,4 +28,14 @@ import { MessageModule } from './message/message.module';
   exports: []
 
 })
-export class AppModule { }
+export class AppModule { 
+  // Start
+  //This part (from Srart to End) is for debuging only
+  constructor(
+    private readonly router: Router,
+  ) {
+    router.events
+      .subscribe(console.log)
+  }
+  //End
+}

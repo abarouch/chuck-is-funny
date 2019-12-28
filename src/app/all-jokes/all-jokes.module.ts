@@ -11,6 +11,8 @@ import { RouterModule } from '@angular/router';
 import { AbPageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { AbJokesService } from './jokes.service';
 import { CategoriesService } from './categories.service';
+import { MaxJokesComponent } from './max-jokes/max-jokes.component';
+import { Globals } from './globals';
 
 
 @NgModule({
@@ -18,7 +20,8 @@ import { CategoriesService } from './categories.service';
     AbJokesComponent,
     CategoriesComponent,
     AllJokesComponent,
-    AbPageNotFoundComponent    
+    AbPageNotFoundComponent,
+    MaxJokesComponent    
   ],
   imports: [
     CommonModule,
@@ -36,6 +39,8 @@ import { CategoriesService } from './categories.service';
     AbJokesService,
     CategoriesService,
     HttpClientModule,
+    MaxJokesComponent,
+    Globals
   ]
 })
 export class AllJokesModule { }
