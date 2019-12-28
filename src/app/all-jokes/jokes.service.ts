@@ -24,8 +24,11 @@ export class AbJokesService {
     private messageService: MessageService,
     private router: Router) {} 
   
-    private findApiUrl (maxJokes: number, category: string){
-      this.jokesUrl = 'https://api.icndb.com/jokes/random/'+ maxJokes;
+    maxJokesValue: Number;
+    private findApiUrl (maxJokes: Observable<number>, category: string){
+      
+      maxJokes.subscribe((value:number)=>this.maxJokesValue=value);
+      this.jokesUrl = 'https://api.icndb.com/jokes/random/' + this.maxJokesValue;
       if (category) {
         category = ('?limitTo=[category]').replace('category',category);
         this.jokesUrl += category
@@ -33,7 +36,7 @@ export class AbJokesService {
   }
 
   /** GET random, up to "amount" varable of jokes from the server */
-  getJokes (maxJokes: number, category: string): Observable<JokesApi> {
+  getJokes (maxJokes:Observable<number>, category: string): Observable<JokesApi> {
     this.findApiUrl (maxJokes, category);
     console.log("jokeurl="+this.jokesUrl)
     return this.http.get<JokesApi>(this.jokesUrl)

@@ -1,6 +1,7 @@
 import { Component, OnInit, Injectable } from '@angular/core';
 import { Globals } from '../globals';
 import { AbJokesComponent } from '../jokes/jokes.component';
+import { of } from 'rxjs';
 
 Injectable({ providedIn: 'root' })
 @Component({
@@ -14,13 +15,14 @@ export class MaxJokesComponent implements OnInit {
     private globals: Globals,
   ) { }
 
-  maxJokes = this.globals.maxJokes;
+  maxJokes: number;
 
   onChange(){
-    this.globals.maxJokes = this.maxJokes;
+    this.globals.maxJokes = of(this.maxJokes);
   }
 
   ngOnInit() { // with select Jokes maximum number
+    this.globals.maxJokes.subscribe((maxJokes:number)=>this.maxJokes=maxJokes);
   }
 
 }
