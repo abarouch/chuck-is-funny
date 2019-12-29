@@ -1,7 +1,5 @@
 export class CategoriesOnJsonFile {
 
-  type = 'success';
+  type: string;
   value: Array<string>;
-
-  // name: string;
 }

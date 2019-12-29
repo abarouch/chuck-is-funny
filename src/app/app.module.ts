@@ -28,14 +28,4 @@ import { Router } from '@angular/router';
   exports: []
 
 })
-export class AppModule { 
-  // Start
-  //This part (from Srart to End) is for debuging only
-  constructor(
-    private readonly router: Router,
-  ) {
-    router.events
-      .subscribe(console.log)
-  }
-  //End
-}
+export class AppModule {}

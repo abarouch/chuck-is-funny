@@ -8,14 +8,13 @@ import { AbPageNotFoundComponent } from './page-not-found/page-not-found.compone
 const routes: Routes = [
   { path: '', redirectTo: 'jokes', pathMatch: 'full' },
   { path: 'jokes', component: AbJokesComponent },
-  { path: 'jokes/:category', component: AbJokesComponent },
+  { path: 'jokes/:category', component: AbJokesComponent, pathMatch: 'full' },
   { path: '**', component: AbPageNotFoundComponent, pathMatch: 'full'}
 ];
 
 @NgModule({
   imports: [ RouterModule.forRoot(
-    routes,
-    { enableTracing: false } // <-- debugging purposes only
+    routes
   )],
   exports: [ RouterModule ]
 })

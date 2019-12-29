@@ -34,7 +34,7 @@ export class MaxJokesComponent implements OnInit {
     )
   }
 
-  ngOnInit() { // with select Jokes maximum number
+  ngOnInit() {
     this.globals.maxJokes.subscribe((maxJokes:number)=>this.maxJokes=maxJokes);
   }
 

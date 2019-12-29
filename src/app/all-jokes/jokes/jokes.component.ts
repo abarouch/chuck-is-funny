@@ -19,9 +19,7 @@ import { ActivatedRoute, ParamMap } from '@angular/router';
   styleUrls: ['./jokes.component.css']
 })
 export class AbJokesComponent implements OnInit {
-//  jokesApi: JokesApi;
-//  jokes: JokeRec[];  
-//  url: string;
+
   jokes$: Observable <JokeRec[]>;
 
   constructor(

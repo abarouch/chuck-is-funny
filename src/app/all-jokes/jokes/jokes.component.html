@@ -1,6 +1,6 @@
 <app-max-jokes></app-max-jokes>
 <ul class="jokes">
-  <li *ngFor="let joke of jokes$ | async" > <!--  | slice:0:maxJokes -->
+  <li *ngFor="let joke of jokes$ | async" > 
   <span class="number">{{joke.id}}</span> {{joke.joke}}*{{joke.categories[0]}}*
   </li>
 </ul>
