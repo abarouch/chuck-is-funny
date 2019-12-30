@@ -8,6 +8,7 @@ import { catchError, map, tap } from 'rxjs/operators';
 import { JokesApi, JokeRec } from './joke';
 import { MessageService } from '../message.service';
 import { Router } from '@angular/router';
+import { MaxJokesService } from './max-jokes.service';
 
 
 @Injectable({ providedIn: 'root' })
@@ -16,13 +17,13 @@ export class AbJokesService {
   private jokesUrl = 'https://api.icndb.com/jokes/random/';  // URL to real web api
   //private jokesUrl = 'api/jokes';  // URL to web api
 
-  httpOptions = {
-    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  };
-  constructor(
+    constructor(
     private http: HttpClient,
     private messageService: MessageService,
-    private router: Router) {} 
+    private router: Router,
+    private maxJokesService: MaxJokesService) {} 
+  
+    
   
     maxJokesValue: Number;
     private findApiUrl (maxJokes: Observable<number>, category: string){

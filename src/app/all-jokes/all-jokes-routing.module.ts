@@ -17,7 +17,8 @@ const routes: Routes = [
   imports: [ RouterModule.forRoot(
     routes
   )],
-  exports: [ RouterModule ]
+  exports: [ RouterModule ],
+  providers: []
 })
 export class AllJokesRoutingModule {
 }
