@@ -4,6 +4,8 @@ import { AbJokesComponent } from './jokes.component';
 import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { MaxJokesComponent } from '../max-jokes/max-jokes.component';
+import { Globals } from '../globals';
 
 describe('JokesComponent', () => {
   let component: AbJokesComponent;
@@ -11,8 +13,9 @@ describe('JokesComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AbJokesComponent ],
+      declarations: [ AbJokesComponent, MaxJokesComponent ],
       imports: [FormsModule,HttpClientTestingModule,RouterTestingModule],
+      providers: [Globals]
     })
     .compileComponents();
   }));

@@ -28,12 +28,12 @@ import { Globals } from './globals';
     RouterModule.forRoot([]),
     FormsModule,
     HttpClientModule,
-    AllJokesRoutingModule,
+    AllJokesRoutingModule
   ],
   exports: [
     AbJokesComponent,
     CategoriesComponent,
-    AllJokesComponent,
+    AllJokesComponent
   ],
   providers: [
     AbJokesService,
