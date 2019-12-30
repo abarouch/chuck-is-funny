@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoriesService } from '../categories.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 
 
 export class CategoriesApi {type: string; value: string[]}
