@@ -23,7 +23,7 @@ export class CategoryGuard implements CanActivate {
         if (category) {
           return of(true);
         } else { // category not found
-          this.router.navigate(['/jokes']);
+          this.router.navigate(['**']);
           return of(false);
         }
       })

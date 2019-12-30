@@ -1,5 +1,5 @@
 <span *ngFor="let category of categories$ | async">
-    <a [routerLink]="['/jokes', category]">
+    <a routerLinkActive="active" [routerLink]="['/jokes', category]">
       {{ category }}
     </a>
 </span>

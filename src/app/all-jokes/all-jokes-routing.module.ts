@@ -8,7 +8,7 @@ import { CategoryGuard } from './category.guard';
 
 const routes: Routes = [
   { path: '', redirectTo: 'jokes', pathMatch: 'full' },
-  { path: 'jokes', component: AbJokesComponent },
+  { path: 'all-jokes', component: AbJokesComponent },
   { path: 'jokes/:category', component: AbJokesComponent, canActivate: [CategoryGuard]},
   { path: '**', component: AbPageNotFoundComponent,}
 ];
